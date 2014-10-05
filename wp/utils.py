@@ -5,19 +5,18 @@ from time import mktime
 from datetime import datetime
 
 from django.template.defaultfilters import register # noqa
-
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
+from django.conf import settings
 
 from horizon import exceptions
 
 from wp.post.post import Post
 
 
-
-WORDPRESS_URL = "http://15.126.226.211/xmlrpc.php"
-WORDPRESS_USERNAME = "demo"
-WORDPRESS_PASSWORD = "stack"
+WORDPRESS_URL = settings.WORDPRESS_HOST_URL
+WORDPRESS_USERNAME = settings.WORDPRESS_USERNAME
+WORDPRESS_PASSWORD = settings.WORDPRESS_PASSWORD
 
 def get_posts(self):
     try:
@@ -26,7 +25,6 @@ def get_posts(self):
 
         for post in posts:
             post['id'] = post['post_id']
-            # post['post_date_string'] = post['post_date'].strftime('%c')  #%m/%d/%Y
 
         return [Post(**p) for p in posts]
 
