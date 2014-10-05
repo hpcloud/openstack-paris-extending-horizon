@@ -1,0 +1,10 @@
+rm /Users/wchrisjohnson/code/hp/als/paris/horizon/openstack_dashboard/local/enabled/_80_0_add_wp_panel_group.py
+rm /Users/wchrisjohnson/code/hp/als/paris/horizon/openstack_dashboard/local/enabled/_80_1_add_wp_panel.py
+rm /Users/wchrisjohnson/code/hp/als/paris/horizon/openstack_dashboard/local/local_settings.py
+
+ln -s /Users/wchrisjohnson/code/hp/als/paris/preso/wp/_bootstrap/_80_0_add_wp_panel_group.py /Users/wchrisjohnson/code/hp/als/paris/horizon/openstack_dashboard/local/enabled/
+ln -s /Users/wchrisjohnson/code/hp/als/paris/preso/wp/_bootstrap/_80_1_add_wp_panel.py /Users/wchrisjohnson/code/hp/als/paris/horizon/openstack_dashboard/local/enabled/
+ln -s /Users/wchrisjohnson/code/hp/als/paris/preso/wp/_bootstrap/local_settings.py /Users/wchrisjohnson/code/hp/als/paris/horizon/openstack_dashboard/local/
+
+rm -rf /Users/wchrisjohnson/code/hp/als/paris/horizon/.venv/lib/python2.7/site-packages/wp/
+ln -s /Users/wchrisjohnson/code/hp/als/paris/preso/wp /Users/wchrisjohnson/code/hp/als/paris/horizon/.venv/lib/python2.7/site-packages/
