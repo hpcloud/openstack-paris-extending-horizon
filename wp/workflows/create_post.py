@@ -36,9 +36,7 @@ class SetPostDetailsAction(workflows.Action):
 
 class SetPostDetails(workflows.Step):
     action_class = SetPostDetailsAction
-    contributes = ("post_title",
-                   "post_content")
-    # template_name = ("project/wp/create.html")
+    contributes = ("post_title", "post_content")
 
     def contribute(self, data, context):
         if data:
@@ -55,8 +53,8 @@ class CreatePost(workflows.Workflow):
     slug = "create_post"
     name = _("Create Post")
     finalize_button_name = _("Create")
-    success_message = _('Created post')
-    failure_message = _('Unable to create post')
+    success_message = _('Created Post named "%s".')
+    failure_message = _('Unable to create post named "%s".')
     success_url = "horizon:project:wp:index"
     failure_url = "horizon:project:wp:index"
     default_steps = (SetPostDetails,)
@@ -71,11 +69,7 @@ class CreatePost(workflows.Workflow):
                 print("-----------------")
             print("===================")
 
-            print "INSIDE handle for CreatePost"
-            post_id = utils.create_post(self, request, context)
-            print "NEW POST! Post ID: %s" % post_id
-            print "INSIDE handle for CreatePost (fini)"
-
+            utils.create_post(self, request, context)
             return True
         except Exception:
             print traceback.format_exc()

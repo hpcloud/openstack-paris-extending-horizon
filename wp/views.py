@@ -22,6 +22,5 @@ class PostCreateView(workflows.WorkflowView):
     workflow_class = CreatePost
 
     def get_initial(self):
-        print "=== INSIDE PostCreateView get_initial ==="
         initial = super(PostCreateView, self).get_initial()
         return initial

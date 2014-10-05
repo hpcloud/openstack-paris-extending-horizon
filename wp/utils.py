@@ -39,8 +39,6 @@ def get_posts(self):
 def create_post(self, request, context):
     try:
 
-        print "INSIDE UTILS::CREATE_POST start"
-
         title = context.get('post_title')
         content = context.get('post_content')
         status = 'publish'
@@ -49,8 +47,6 @@ def create_post(self, request, context):
 
         data = {'post_title': title, 'post_content': content, 'post_status': status}
         post_id = server.wp.newPost(0, WORDPRESS_USERNAME, WORDPRESS_PASSWORD, data)
-
-        print "INSIDE UTILS::CREATE_POST complete"
         return post_id
 
     except:
