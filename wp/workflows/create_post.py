@@ -1,9 +1,14 @@
+import traceback
+
 from horizon import workflows, forms, exceptions
 from horizon.utils import validators
+
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError  # noqa
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+
+from wp import utils
 
 
 class SetPostDetailsAction(workflows.Action):
@@ -66,7 +71,13 @@ class CreatePost(workflows.Workflow):
                 print("-----------------")
             print("===================")
 
+            print "INSIDE handle for CreatePost"
+            post_id = utils.create_post(self, request, context)
+            print "NEW POST! Post ID: %s" % post_id
+            print "INSIDE handle for CreatePost (fini)"
+
             return True
         except Exception:
+            print traceback.format_exc()
             exceptions.handle(request, _("Unable to setup post create."))
             return False

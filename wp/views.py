@@ -21,13 +21,7 @@ class PostIndexView(tables.DataTableView):
 class PostCreateView(workflows.WorkflowView):
     workflow_class = CreatePost
 
-    # def get_initial(self):
-    #     print "=== inside get_initial ==="
-    #     initial = super(PostCreateView, self).get_initial()
-    #     # initial['project_id'] = self.request.user.tenant_id
-    #     # initial['user_id'] = self.request.user.id
-    #     return initial
-
-# class PostDeleteView(tables.DataTableView):
-#     table_class = PostsTable
-#     template_name = 'wp/index.html'
+    def get_initial(self):
+        print "=== INSIDE PostCreateView get_initial ==="
+        initial = super(PostCreateView, self).get_initial()
+        return initial

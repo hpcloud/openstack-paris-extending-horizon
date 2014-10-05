@@ -1,9 +1,11 @@
 from django import template
-from django.template.defaultfilters import filesizeformat
+from django.template.defaultfilters import filesizeformat, time
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from horizon import tables  #, workflows, forms
+
+from wp import utils
 
 
 class CreatePost(tables.LinkAction):
@@ -24,8 +26,7 @@ class DeletePost(tables.DeleteAction):
     data_type_plural = _("Posts")
 
     def delete(self, request, obj_id):
-        pass
-        # cinder.volume_type_delete(request, obj_id)
+        utils.delete_post(self, obj_id)
 
 class PostFilterAction(tables.FilterAction):
     def filter(self, table, posts, filter_string):
@@ -59,20 +60,11 @@ class PostsTable(tables.DataTable):
     title = tables.Column("post_title",
                           verbose_name=_("Post Title"))
 
-    # author = tables.Column("author",
-    #                        verbose_name=_("Post Author"))
-    #
-    # categories = tables.Column("categories",
-    #                            verbose_name=_("Categories"))
-    #
-    # tags = tables.Column("tags",
-    #                      verbose_name=_("Tags"))
-    #
-    # comments = tables.Column("comments",
-    #                        verbose_name=_("Comments"))
-
     date = tables.Column("post_date",
-                           verbose_name=_("Date"))
+                           verbose_name=_("Date"),
+                           filters=(utils.parse_time,),
+                           attrs={'data-type': 'datetime'}
+                           )
 
     status = tables.Column("post_status",
                           verbose_name=_("Status"),
