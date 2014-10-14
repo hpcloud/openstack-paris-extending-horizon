@@ -1,5 +1,6 @@
 from django import template
 from django.template.defaultfilters import filesizeformat, time
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
@@ -74,7 +75,7 @@ class PostsTable(tables.DataTable):
 
     class Meta:
         name = "wp"
-        verbose_name = _("Posts")
+        verbose_name = _("Posts (%s)" % settings.WORDPRESS_URL)
         status_columns = ["status"]
         row_class = UpdateRow
         table_actions = (CreatePost,

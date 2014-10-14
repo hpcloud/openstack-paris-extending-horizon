@@ -14,13 +14,13 @@ from horizon import exceptions
 from wp.post.post import Post
 
 
-WORDPRESS_URL = settings.WORDPRESS_HOST_URL
+WORDPRESS_XMLRPC_URL = settings.WORDPRESS_XMLRPC_URL
 WORDPRESS_USERNAME = settings.WORDPRESS_USERNAME
 WORDPRESS_PASSWORD = settings.WORDPRESS_PASSWORD
 
 def get_posts(self):
     try:
-        server = xmlrpclib.ServerProxy(WORDPRESS_URL)
+        server = xmlrpclib.ServerProxy(WORDPRESS_XMLRPC_URL)
         posts = server.wp.getPosts(0,WORDPRESS_USERNAME,WORDPRESS_PASSWORD)
 
         for post in posts:
@@ -41,7 +41,7 @@ def create_post(self, request, context):
         content = context.get('post_content')
         status = 'publish'
 
-        server = xmlrpclib.ServerProxy(WORDPRESS_URL)
+        server = xmlrpclib.ServerProxy(WORDPRESS_XMLRPC_URL)
 
         data = {'post_title': title, 'post_content': content, 'post_status': status}
         post_id = server.wp.newPost(0, WORDPRESS_USERNAME, WORDPRESS_PASSWORD, data)
@@ -57,7 +57,7 @@ def create_post(self, request, context):
 
 def delete_post(self, post_id):
     try:
-        server = xmlrpclib.ServerProxy(WORDPRESS_URL)
+        server = xmlrpclib.ServerProxy(WORDPRESS_XMLRPC_URL)
         return server.wp.deletePost(0, WORDPRESS_USERNAME, WORDPRESS_PASSWORD, post_id)
     except:
         print "Exception inside utils.delete_post"

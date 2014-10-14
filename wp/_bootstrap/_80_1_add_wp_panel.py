@@ -1,4 +1,4 @@
-# # New panel within the new panel group
+# New panel within panel group
 PANEL = 'posts',
 PANEL_GROUP = 'wordpress'
 PANEL_DASHBOARD = 'project'

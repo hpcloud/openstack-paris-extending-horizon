@@ -1,4 +1,4 @@
-# wordpress_ui #
+# Wordpress custom UI #
 
 ## Repo for extending Horizon with Wordpress customizations ##
 
