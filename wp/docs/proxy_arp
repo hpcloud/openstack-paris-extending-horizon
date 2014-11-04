@@ -1,0 +1,11 @@
+host proxy arp
+--------------
+sudo ifconfig vmnet8 add 172.24.3.1/16
+sudo sysctl -w net.link.ether.inet.proxyall=1
+
+
+vm proxy arp
+------------
+sudo ip addr add 172.24.3.2 dev eth0
+sudo ip route add 172.24.3.0/24 dev eth0
+sudo bash -c 'echo 1 >/proc/sys/net/ipv4/conf/eth0/proxy_arp'
