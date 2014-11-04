@@ -75,7 +75,7 @@ class PostsTable(tables.DataTable):
 
     class Meta:
         name = "wp"
-        verbose_name = _("Posts (%s)" % settings.WORDPRESS_URL)
+        verbose_name = _("Posts (%s)" % settings.WORDPRESS_IP)
         status_columns = ["status"]
         row_class = UpdateRow
         table_actions = (CreatePost,
